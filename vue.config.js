@@ -6,12 +6,16 @@ function resolve(dir) {
 
 module.exports = {
     lintOnSave: false,
-    css: {
-        loaderOptions: {
-            // 设置 scss 公用变量文件
-            stylus: {
-                data: `@import '~@assets/style/global.styl';`
-            }
+    pages: {
+        pageA: {
+            entry: 'src/pages/pageA/index.js',
+            template: 'src/layout/template.html',//这里的template不是必须配置的，如果不配置，或者找不到模板html就加载public路径下的index.html
+            filename: 'pageA.html',
+        },
+        pageC: {
+            entry: 'src/pages/pageC/index.js',
+            template: 'src/layout/template.html',//这里的template不是必须配置的，如果不配置，或者找不到模板html就加载public路径下的index.html
+            filename: 'pageC.html',
         }
     },
     chainWebpack: config => {
@@ -21,5 +25,10 @@ module.exports = {
             .set('@components', resolve('src/components'))
             .set('@pages', resolve('src/pages'))
             .set('@libs', resolve('src/libs'))
+    },
+    devServer: {
+        open: true,
+        index: '/pageA.html',
+        proxy: 'http://localhost:8090/'
     }
 }
