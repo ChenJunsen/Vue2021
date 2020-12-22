@@ -7,7 +7,7 @@
         normal,
         disabled
     }">
-        {{text}}
+        <slot>{{text}}</slot>
     </div>
 </template>
 
@@ -56,15 +56,15 @@
     .btn-container {
         display inline-block
         border-radius 4px
-        min-height 45px
         min-width 80px
         box-sizing border-box
         padding-left 20px
         padding-right 20px
-        padding-top 10px
-        padding-bottom 10px
+        padding-top 5px
+        padding-bottom 5px
         color #FFFFFF
         background #4cbdfe
+        margin 5px
 
         &:active {
             background #ECF5FF
