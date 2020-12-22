@@ -1,5 +1,7 @@
 <template>
-    <div class="btn-container" :class="{
+    <div class="btn-container"
+         @click="$_onClick"
+         :class="{
         small,
         large,
         normal,
@@ -10,6 +12,8 @@
 </template>
 
 <script>
+    import {debounce} from 'lodash'
+
     export default {
         name: 'Button',
         props: {
@@ -39,6 +43,11 @@
         },
         mounted() {
             console.log(this.text + ' ' + this.size + ' ' + this.disabled)
+        },
+        methods: {
+            $_onClick: debounce(function ($event) {
+                this.$emit('click', $event)
+            }, 500, {leading: true})
         }
     }
 </script>
